@@ -1,0 +1,1 @@
+<img src="{{ asset('images/umg/escudo-umg.png') }}" alt="Escudo de la Universidad Mariano Gálvez de Guatemala" width="96" height="96" {{ $attributes->merge(['class'=>'h-14 w-14 shrink-0 object-contain']) }}>

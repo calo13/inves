@@ -1,0 +1,1 @@
+@props(['value'])<span class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium {{ match($value){'Urgente','Rojo','No aplicable'=>'bg-error-50 text-error-700','Alta','Amarillo'=>'bg-warning-50 text-warning-700','Resuelto','Verde','Aplicada','Validada'=>'bg-success-50 text-success-700',default=>'bg-brand-50 text-brand-600'} }}">{{ $value }}</span>

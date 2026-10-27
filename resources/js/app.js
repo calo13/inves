@@ -1,53 +1,11 @@
-import { createPopper } from '@popperjs/core';
 import './bootstrap';
-import Alpine from 'alpinejs';
-import ApexCharts from 'apexcharts';
-
-// flatpickr
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-// FullCalendar
-import { Calendar } from 'fullcalendar';
-
-
-
-window.Alpine = Alpine;
-window.createPopper = createPopper;
-window.ApexCharts = ApexCharts;
-window.flatpickr = flatpickr;
-window.FullCalendar = Calendar;
-
-Alpine.start();
-
-// Initialize components on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Map imports
-    if (document.querySelector('#mapOne')) {
-        import('./components/map').then(module => module.initMap());
-    }
-
-    // Chart imports
-    if (document.querySelector('#chartOne')) {
-        import('./components/chart/chart-1').then(module => module.initChartOne());
-    }
-    if (document.querySelector('#chartTwo')) {
-        import('./components/chart/chart-2').then(module => module.initChartTwo());
-    }
-    if (document.querySelector('#chartThree')) {
-        import('./components/chart/chart-3').then(module => module.initChartThree());
-    }
-    if (document.querySelector('#chartSix')) {
-        import('./components/chart/chart-6').then(module => module.initChartSix());
-    }
-    if (document.querySelector('#chartEight')) {
-        import('./components/chart/chart-8').then(module => module.initChartEight());
-    }
-    if (document.querySelector('#chartThirteen')) {
-        import('./components/chart/chart-13').then(module => module.initChartThirteen());
-    }
-
-    // Calendar init
-    if (document.querySelector('#calendar')) {
-        import('./components/calendar-init').then(module => module.calendarInit());
-    }
-});
+// Livewire inicia Alpine; evitar una segunda instancia.
+window.ioChart=async(el,rows)=>{
+ const {default:ApexCharts}=await import('apexcharts');
+ if(el.__chart)return;
+ const chart=new ApexCharts(el,{chart:{type:'bar',height:280,toolbar:{show:false},fontFamily:'Outfit, sans-serif'},series:[{name:'Carga ponderada',data:rows.map(r=>r.carga)},{name:'Cantidad de tickets',data:rows.map(r=>r.tickets)}],colors:[getComputedStyle(document.documentElement).getPropertyValue('--color-brand-500').trim(),getComputedStyle(document.documentElement).getPropertyValue('--color-brand-200').trim()],plotOptions:{bar:{borderRadius:4,columnWidth:'42%'}},dataLabels:{enabled:false},xaxis:{categories:rows.map(r=>r.nombre),axisBorder:{show:false},axisTicks:{show:false}},grid:{borderColor:'#f2f4f7'},legend:{position:'top',horizontalAlign:'left'},yaxis:{min:0,labels:{formatter:v=>v.toFixed(0)}},tooltip:{y:{formatter:v=>v.toFixed(2)}}});el.__chart=chart;chart.render();
+};
+window.ioCalendar=async(el,events)=>{
+ const {renderCalendar}=await import('./io-calendar');
+ renderCalendar(el,events);
+};

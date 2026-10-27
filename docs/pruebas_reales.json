@@ -1,0 +1,70 @@
+[
+    {
+        "prueba": 1,
+        "estado": "Validada",
+        "motor": "OR-Tools CP-SAT",
+        "tickets": 38,
+        "excluidos": 6,
+        "gestores": 5,
+        "validacion": {
+            "valido": true,
+            "errores": [],
+            "obligatorias": 20,
+            "obligatorias_total": 20,
+            "regulares": 10,
+            "muestreo_minimo": 10,
+            "colisiones": 0
+        },
+        "desviacion": 0.1,
+        "cambios": []
+    },
+    {
+        "prueba": 2,
+        "estado": "Validada",
+        "motor": "OR-Tools CP-SAT",
+        "tickets": 38,
+        "excluidos": 6,
+        "gestores": 4,
+        "validacion": {
+            "valido": true,
+            "errores": [],
+            "obligatorias": 20,
+            "obligatorias_total": 20,
+            "regulares": 10,
+            "muestreo_minimo": 10,
+            "colisiones": 0
+        },
+        "desviacion": 0.05,
+        "cambios": []
+    },
+    {
+        "prueba": 3,
+        "estado": "Validada",
+        "motor": "OR-Tools CP-SAT",
+        "tickets": 38,
+        "excluidos": 6,
+        "gestores": 5,
+        "validacion": {
+            "valido": true,
+            "errores": [],
+            "obligatorias": 20,
+            "obligatorias_total": 20,
+            "regulares": 10,
+            "muestreo_minimo": 10,
+            "colisiones": 0
+        },
+        "desviacion": 0.1,
+        "cambios": [
+            {
+                "ticket": "6411-PFIN-26",
+                "antes": 1.45,
+                "despues": 3.95
+            },
+            {
+                "ticket": "6359-PFIN-26",
+                "antes": 2.75,
+                "despues": 5.25
+            }
+        ]
+    }
+]

@@ -12,6 +12,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --color-academic-red: #b52328;
+  --color-academic-gold: #b99045;
   --font-*: initial;
   --font-outfit: Outfit, sans-serif;
 
@@ -47,18 +49,18 @@
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
-  --color-brand-950: #161950;
+  --color-brand-25: #f5f9fc;
+  --color-brand-50: #edf4fa;
+  --color-brand-100: #dbe9f5;
+  --color-brand-200: #b9d2e8;
+  --color-brand-300: #8cb3d3;
+  --color-brand-400: #528cb7;
+  --color-brand-500: #24618f;
+  --color-brand-600: #194d76;
+  --color-brand-700: #173e5f;
+  --color-brand-800: #17344e;
+  --color-brand-900: #142d43;
+  --color-brand-950: #0a1d30;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -1312,3 +1314,15 @@ pre code,
   text-align: left !important;
   unicode-bidi: isolate;
 }
+@layer components {
+ .io-input { @apply w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm font-normal text-gray-800 shadow-theme-xs outline-none focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10; }
+ .io-secondary { @apply inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50; }
+ .io-table { @apply w-full text-start text-sm; }
+ .io-table th { @apply border-b border-gray-200 bg-gray-50 px-4 py-3 text-start text-xs font-medium text-gray-500; }
+ .io-table td { @apply border-b border-gray-100 px-4 py-4 align-middle; }
+ .io-table tbody tr:hover { @apply bg-gray-50/60; }
+ .io-event-required { @apply border-brand-300 bg-brand-50 text-brand-700; }
+ .io-event-support { @apply border-warning-300 bg-warning-50 text-warning-700; }
+ .io-event-sample { @apply border-success-300 bg-success-50 text-success-700; }
+}
+[x-cloak] { display:none!important; }

@@ -1,0 +1,14 @@
+# Copiar como apache-docencia.conf y reemplazar RUTA_DEL_PROYECTO.
+Listen 127.0.0.1:8000
+<VirtualHost 127.0.0.1:8000>
+    ServerName 127.0.0.1:8000
+    DocumentRoot "RUTA_DEL_PROYECTO/public"
+    <Directory "RUTA_DEL_PROYECTO/public">
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require local
+        DirectoryIndex index.php
+    </Directory>
+    ErrorLog "logs/docencia-error.log"
+    CustomLog "logs/docencia-access.log" combined
+</VirtualHost>

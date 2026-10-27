@@ -1,530 +1,104 @@
-# TailAdmin Laravel - Tailwind CSS Free Laravel Dashboard
+# inves
 
-**TailAdmin Laravel** is a modern, production-ready admin dashboard template powered by **Laravel 12**, **Tailwind CSS v4**, **Alpine.js**, and a clean, modular architecture. TailAdmin is one of the most popular Tailwind CSS dashboard now also available for Larvael. It’s designed for building fast, scalable admin panels, CRM dashboards, SaaS backends, and any data-driven application where clarity and performance matter.
-![TailAdmin - Next.js Dashboard Preview](./tailadmin-laravel.png)
+Optimización de tickets y acompañamiento docente.
 
+Proyecto de Investigación de Operaciones, UMG, sexto semestre. Entrega confirmada: **30/10/2026**.
 
-## Quick Links
+Aplicación Laravel 12, PHP 8.2+, Livewire 3 y MySQL 8. Interfaz basada en la plantilla oficial **TailAdmin Free Laravel**, con Blade, Tailwind CSS v4, ApexCharts y FullCalendar. Se conserva la licencia MIT del repositorio original. No es una maqueta: las acciones utilizan servicios y base de datos.
 
-* [✨ Get TailAdmin Laravel](https://tailadmin.com/laravel)
-* [📄 Documentation](https://tailadmin.com/docs)
-* [⬇️ Download](https://tailadmin.com/download)
-* [🌐 Live Demo](https://laravel-demo.tailadmin.com)
+## Abrir el proyecto académico de este equipo
 
-Here’s a tighter, more search-friendly version that highlights value and avoids fluff while keeping your structure intact.
+La aplicación local utiliza **MySQL 8.0.44**, base `docencia_io`, administrada desde Workbench, y **Apache de XAMPP**. Se trasladaron los datos originales y se conservó el respaldo SQLite. El entorno Python `.venv` y los recursos visuales compilados están instalados.
 
-## ✨ Key Features
+En este equipo, Apache de XAMPP sirve el proyecto directamente en **http://127.0.0.1:8000**. Mantener Apache iniciado desde el panel de XAMPP y ejecutar `iniciar.bat` para abrirlo. No ejecutar a la vez `php artisan serve` en el puerto 8000. El detalle de esta configuración está en `docs/XAMPP_MYSQL.md`.
 
-* 🚀 **Laravel 12 Core** - Built on the latest Laravel release with improved routing, security, and Blade templating
-* 🎨 **Tailwind CSS v4** - Utility-first styling for rapid, consistent UI development
-* ⚡ **Alpine.js Interactivity** - Lightweight reactivity without a heavy JavaScript framework
-* 📦 **Vite Build System** - Fast dev server, instant HMR, and optimized production builds
-* 📱 **Fully Responsive Layouts** - Smooth, mobile-first design that adapts across all screen sizes
-* 🌙 **Built-in Dark Mode** - Ready-to-use modern dark theme for better usability and aesthetics
-* 📊 **Advanced UI Components** - Charts, data tables, forms, calendars, modals, and reusable blocks for complex dashboards
-* 🎯 **Production-Ready Dashboard UI** - Clean, modern interface crafted for real apps, not placeholder demos
+Abrir http://127.0.0.1:8000. El acceso de esta tarea académica es `admin@admin.com`, contraseña `123`. Autor: **Carlos Augusto Lopez Urizar**, estudiante de **6.º semestre**. En Configuración se puede cambiar y crear cuentas de Mesa de Entrada y de gestores.
 
-### Other Versions
+## Instalación en Windows con MySQL
 
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [React.js Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
-- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
-- [Angular Version](https://github.com/TailAdmin/free-angular-tailwind-dashboard)
-- [Laravel Version](https://github.com/TailAdmin/tailadmin-laravel)
+Requisitos: PHP 8.2 o superior con bcmath, ctype, curl, dom, fileinfo, gd, iconv, mbstring, mysqli, pdo_mysql, simplexml, xmlreader, xmlwriter y zip; Composer 2; Node 22; MySQL 8; Python 3.12 recomendado para OR-Tools.
 
-## 📋 Requirements
-To set up TailAdmin Laravel, make sure your environment includes:
+1. Crear una base **nueva y vacía** `docencia_io` desde MySQL o phpMyAdmin. Crear o elegir un usuario con acceso a esa base.
+2. En una instalación nueva, copiar `.env.example` a `.env`. En esta copia de demostración, editar las variables de conexión del `.env` existente, conservando `APP_KEY`. Ajustar `DB_CONNECTION=mysql`, `DB_DATABASE=docencia_io`, usuario y contraseña. No compartir `.env`.
+3. Instalar y preparar:
 
-* **PHP 8.2+**
-* **Composer** (PHP dependency manager)
-* **Node.js 18+** and **npm** (for compiling frontend assets)
-* **Database** - Works with SQLite (default), MySQL, or PostgreSQL
-
-### Tailwind CSS Laravel Dashboard
-
-TailAdmin delivers a refined Tailwind CSS Laravel Dashboard experience, combining Laravel’s robust backend with Tailwind’s flexible utility classes. The result is a clean, fast, and customizable dashboard that helps developers build modern admin interfaces without the usual front-end complexity. It’s ideal for teams looking for a Tailwind-powered Laravel starter that stays lightweight and easy to scale.
-
-### Laravel Admin Dashboard
-
-If you’re searching for a dependable Laravel Admin Dashboard template that’s easy to set up and ready for production, TailAdmin fits the job. It offers a polished UI, reusable components, optimized performance, and all the essentials needed to launch dashboards, CRM systems, and internal tools quickly. It gives developers a solid foundation, so projects move faster with fewer decisions to worry about.
-
-### Check Your Environment
-
-Verify your installations:
-
-```bash
-php -v
-composer -V
-node -v
-npm -v
-```
-
-## 🐳 Docker & Laravel Sail Setup (Official)
-
-TailAdmin Laravel includes pre-configured, official support for **Docker** powered by **Laravel Sail** (PHP 8.4, MySQL 8.0, Redis, and Mailpit).
-
-### Prerequisites
-Make sure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed and running on your machine.
-
-### Quick Start with Docker & Sail
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/TailAdmin/tailadmin-laravel.git
-   cd tailadmin-laravel
-   ```
-
-2. **Configure environment:**
-   ```bash
-   cp .env.example .env
-   ```
-   In your `.env` file, ensure container networking is set:
-   ```env
-   DB_HOST=mysql
-   DB_USERNAME=sail
-   DB_PASSWORD=password
-   REDIS_HOST=redis
-   ```
-
-3. **Install Composer dependencies (if PHP is not installed locally):**
-   ```bash
-   docker run --rm \
-       -u "$(id -u):$(id -g)" \
-       -v "$(pwd):/var/www/html" \
-       -w /var/www/html \
-       laravelsail/php84-composer:latest \
-       composer install --ignore-platform-reqs
-   ```
-   *(Or simply run `composer install` if you have PHP and Composer locally).*
-
-4. **Start Docker containers:**
-   ```bash
-   ./vendor/bin/sail up -d
-   ```
-
-5. **Generate application key & run migrations:**
-   ```bash
-   ./vendor/bin/sail artisan key:generate
-   ./vendor/bin/sail artisan migrate
-   ```
-
-6. **Install frontend dependencies & start Vite dev server:**
-   ```bash
-   ./vendor/bin/sail npm install
-   ./vendor/bin/sail npm run dev
-   ```
-
-7. **Access the application:**
-   - **TailAdmin Dashboard:** [http://localhost](http://localhost) (or [http://localhost:8000](http://localhost:8000) if `APP_PORT=8000`)
-   - **Vite Dev Server:** [http://localhost:5173](http://localhost:5173) (auto-proxied with HMR)
-   - **Mailpit Web UI:** [http://localhost:8025](http://localhost:8025)
-
-### Convenient Sail Shell Alias
-To avoid typing `./vendor/bin/sail` repeatedly, add an alias to your shell profile (`~/.zshrc` or `~/.bashrc`):
-```bash
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-```
-Now you can run:
-```bash
-sail up -d
-sail artisan migrate
-sail npm run dev
-sail down
-```
-
-### Container Networking & Vite Architecture
-- **Vite Dev Server (Port 5173)**: Pre-configured in `vite.config.js` with `server.host: "0.0.0.0"` and `server.hmr.host: "localhost"`. This ensures the host browser can access assets directly without `ERR_EMPTY_RESPONSE` connection errors.
-- **Volume File Watcher**: File polling (`usePolling: true`) is enabled in `vite.config.js` to guarantee instant hot reload when editing code on macOS, Windows, or Linux host filesystems.
-- **Container Database Host**: Inside the Docker bridge network, services communicate via container names. Set `DB_HOST=mysql` and `REDIS_HOST=redis` inside Docker.
-- **Tailwind CSS v4**: Seamlessly compiled inside containers via `@tailwindcss/vite` without legacy v3 config conflicts.
-
----
-
-## 🚀 Quick Start Installation (Local / Native)
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/TailAdmin/tailadmin-laravel.git
-cd tailadmin-laravel
-```
-
-### Step 2: Install PHP Dependencies
-
-```bash
+```powershell
 composer install
-```
-
-This command will install all Laravel dependencies defined in `composer.json`.
-
-### Step 3: Install Node.js Dependencies
-
-```bash
-npm install
-```
-
-Or if you prefer yarn or pnpm:
-
-```bash
-# Using yarn
-yarn install
-
-# Using pnpm
-pnpm install
-```
-
-### Step 4: Environment Configuration
-
-Copy the example environment file:
-
-```bash
-cp .env.example .env
-```
-
-**For Windows users:**
-
-```bash
-copy .env.example .env
-```
-
-**Or create it programmatically:**
-
-```bash
-php -r "file_exists('.env') || copy('.env.example', '.env');"
-```
-
-### Step 5: Generate Application Key
-
-```bash
+npm.cmd ci
 php artisan key:generate
+php artisan config:clear
+php artisan migrate --seed
+npm.cmd run build
+php artisan io:demo
+php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-This creates a unique encryption key for your application.
+En una copia ya configurada no regenerar la clave. `io:demo` carga el archivo incluido `database/fixtures/Control_Prueba_IO.xlsx`, sin borrar tablas. Alternativa: subir otro Control.xlsx desde Importar Excel. Para archivos grandes se recomienda `memory_limit=512M` en php.ini; el importador ya omite hojas de reportes y estilos innecesarios.
 
-### Step 6: Configure Database
+## Motor Python y respaldo PHP
 
-#### Option A: Using MySQL/PostgreSQL
-
-Update your `.env` file with your database credentials:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=tailadmin_db
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r optimizador/requirements.txt
 ```
 
-Create the database:
+En `.env`:
 
-```bash
-# MySQL
-mysql -u root -p -e "CREATE DATABASE tailadmin_db;"
-
-# PostgreSQL
-createdb tailadmin_db
+```dotenv
+IO_MOTOR=python
+IO_PYTHON="C:/ruta/al/proyecto/.venv/Scripts/python.exe"
 ```
 
-Run migrations:
+`php artisan config:clear` aplica los cambios. Python recibe y devuelve JSON mediante Symfony Process, sin concatenar comandos de shell. Si Python no se puede ejecutar, se utiliza la heurística PHP y se registra el motivo. Para usar PHP directamente: `IO_MOTOR=php`.
 
-```bash
-php artisan migrate
-```
+## Flujo principal
 
-### Step 7: (Optional) Seed the Database
+- **Importar Excel:** revisar una previsualización y confirmar la importación.
+- **Calidad de datos:** consultar incidencias, incluida la fila duplicada original.
+- **Mesa de Entrada:** registrar o editar tickets, marcar criterios críticos, corregir sesiones confirmadas y solicitar sugerencia de gestor.
+- **Gestores y ausencias:** crear gestores, cambiar disponibilidad y registrar vacaciones. Simular el rebalanceo antes de aplicarlo.
+- **Cambio de docente:** comparar peso y semáforo, aplicar el cambio y revisar la reasignación propuesta.
+- **Calendario:** ejecutar una corrida, revisar cobertura y conflictos, y aplicar únicamente una propuesta validada.
+- **Panel ejecutivo:** filtrar carga, conteos, prioridades, fechas y cobertura.
+- **Pruebas de validación:** ejecutar tres escenarios con restauración transaccional y evidencia guardada.
+- **Configuración:** pesos, factores, plazos, capacidad, días no hábiles y cuentas con roles.
 
-If you want sample data:
+## Datos incompletos: decisión explícita
 
-```bash
-php artisan db:seed
-```
+El archivo contiene 113 filas de tickets pero 112 códigos únicos. `6212-PFIN-26` aparece dos veces: se conserva el primer ticket y la segunda fila íntegra queda en incidencias, sin sobrescribir la primera. No se interpreta una fecha textual ambigua ni se inventan sesiones.
 
-### Step 8: Storage Link
+Con los datos originales hay **6 tickets abiertos incompletos**. Por defecto una corrida total se bloquea. El usuario puede marcar **Planificar solo tickets con fechas y sesiones completas**. En ese modo quedan 38 tickets en el alcance y 6 pendientes, identificados por código. Los pendientes conservan su asignación y su carga cuenta como fija cuando su gestor sigue activo. El resultado certifica solamente las sesiones incluidas. No debe presentarse como cobertura de toda la base.
 
-Create a symbolic link for file storage:
+Para obtener una corrida completa, confirmar fechas y sesiones de esos tickets desde Mesa de Entrada. Los tickets resueltos y cancelados no se reasignan. La optimización contempla las sesiones desde la fecha de referencia; no reescribe observaciones pasadas ni desplaza eventos para eliminar conflictos.
 
-```bash
-php artisan storage:link
-```
+## Verificación
 
-## 🏃 Running the Application
-
-### Development Mode (Recommended)
-
-The easiest way to start development is using the built-in script:
-
-```bash
-composer run dev
-```
-
-This single command starts:
-- ✅ Laravel development server (http://localhost:8000)
-- ✅ Vite dev server for hot module reloading
-- ✅ Queue worker for background jobs
-- ✅ Log monitoring
-
-**Access your application at:** [http://localhost:8000](http://localhost:8000)
-
-### Manual Development Setup
-
-If you prefer to run services individually in separate terminal windows:
-
-**Terminal 1 - Laravel Server:**
-```bash
-php artisan serve
-```
-
-**Terminal 2 - Frontend Assets:**
-```bash
-npm run dev
-```
-
-### Building for Production
-
-#### Build Frontend Assets
-
-```bash
-npm run build
-```
-
-#### Optimize Laravel
-
-```bash
-# Clear and cache configuration
-php artisan config:cache
-
-# Cache routes
-php artisan route:cache
-
-# Cache views
-php artisan view:cache
-
-# Optimize autoloader
-composer install --optimize-autoloader --no-dev
-```
-
-#### Production Environment
-
-Update your `.env` for production:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://yourdomain.com
-```
-
-
-## 🧪 Testing
-
-Run the test suite using Pest:
-
-```bash
-composer run test
-```
-
-Or manually:
-
-```bash
+```powershell
 php artisan test
+.\.venv\Scripts\python.exe -m unittest discover -s optimizador -p "test_*.py"
+npm.cmd run build
+php artisan io:optimizar --fecha=2026-10-26 --solo-planificables
+php artisan io:validar NUMERO_DE_CORRIDA
 ```
 
-Run with coverage:
+`io:optimizar` genera una vista previa; agregar `--aplicar` guarda asignaciones únicamente si el validador acepta la corrida. Los tests PHP utilizan una base SQLite en memoria, nunca la base de trabajo. En el entorno restringido de Codex/Windows PHP `is_readable()` devuelve falso para archivos accesibles; la importación y las pruebas se ejecutaron fuera de ese aislamiento con autorización de la herramienta.
 
-```bash
-php artisan test --coverage
-```
+## Documentación
 
-Run specific tests:
+- `docs/MODELO.md`: formulación, objetivo y supuestos.
+- `docs/MANUAL_USUARIO.md`: operación y guion de las pruebas.
+- `docs/BITACORA_IA.md`: decisiones, prompts, errores reales y correcciones.
+- `docs/INFORME_TECNICO.md`: base del informe académico.
+- `docs/VERIFICACION.md`: resultados de comprobación reales.
 
-```bash
-php artisan test --filter=ExampleTest
-```
+Fuentes técnicas primarias: https://github.com/TailAdmin/tailadmin-laravel y https://livewire.laravel.com/docs/3.x/installation. El frontend utiliza las bibliotecas de la plantilla, cargadas localmente y compiladas con Vite. Para entrega sin Internet puede sustituirse la fuente web Outfit por una fuente local; el sistema ya usa sans-serif como respaldo.
 
-## 📜 Available Commands
+No usar `migrate:fresh` sobre una base con información que se quiera conservar. No hay publicación en Internet ni conexión al HelpDesk real. El video individual y los datos de autoría del informe los completa el estudiante.
 
-### Composer Scripts
+## Archivos del repositorio
 
-```bash
-# Start development environment
-composer run dev
+Se incluyen el código, las migraciones, los parámetros de ejemplo, los archivos de dependencias bloqueados, el Excel de prueba y la documentación. No se incluyen .env, contraseñas de MySQL, bases locales, respaldos, logs, cachés ni dependencias instaladas. Después de clonar, seguir la instalación indicada arriba y copiar .env.example a .env.
 
-# Run tests
-composer run test
+La configuración de Apache de este equipo es local. Para otro equipo, copiar config/apache-docencia.conf.example como config/apache-docencia.conf y ajustar la ruta del proyecto antes de incluirlo en Apache.
 
-# Code formatting (if configured)
-composer run format
-
-# Static analysis (if configured)
-composer run analyze
-```
-
-### NPM Scripts
-
-```bash
-# Start Vite dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Lint JavaScript/TypeScript
-npm run lint
-
-# Format code
-npm run format
-```
-
-### Artisan Commands
-
-```bash
-# Start development server
-php artisan serve
-
-# Run migrations
-php artisan migrate
-
-# Rollback migrations
-php artisan migrate:rollback
-
-# Fresh migrations with seeding
-php artisan migrate:fresh --seed
-
-# Generate application key
-php artisan key:generate
-
-# Clear all caches
-php artisan optimize:clear
-
-# Cache everything for production
-php artisan optimize
-
-# Create symbolic link for storage
-php artisan storage:link
-
-# Start queue worker
-php artisan queue:work
-
-# List all routes
-php artisan route:list
-
-# Create a new controller
-php artisan make:controller YourController
-
-# Create a new model
-php artisan make:model YourModel -m
-
-# Create a new migration
-php artisan make:migration create_your_table
-```
-
-## 📁 Project Structure
-
-```
-tailadmin-laravel/
-├── app/                    # Application logic
-│   ├── Http/              # Controllers, Middleware, Requests
-│   ├── Models/            # Eloquent models
-│   └── Providers/         # Service providers
-├── bootstrap/             # Framework bootstrap files
-├── config/                # Configuration files
-├── database/              # Migrations, seeders, factories
-│   ├── migrations/
-│   ├── seeders/
-│   └── factories/
-├── public/                # Public assets (entry point)
-│   ├── build/            # Compiled assets (generated)
-│   └── index.php         # Application entry point
-├── resources/             # Views and raw assets
-│   ├── css/              # Stylesheets (Tailwind)
-│   ├── js/               # JavaScript files (Alpine.js)
-│   └── views/            # Blade templates
-├── routes/                # Route definitions
-│   ├── web.php           # Web routes
-│   ├── api.php           # API routes
-│   └── console.php       # Console routes
-├── storage/               # Logs, cache, uploads
-│   ├── app/
-│   ├── framework/
-│   └── logs/
-├── tests/                 # Pest test files
-│   ├── Feature/
-│   └── Unit/
-├── docker-compose.yml     # Docker & Laravel Sail configuration
-├── .env.example           # Example environment file
-├── artisan                # Artisan CLI
-├── composer.json          # PHP dependencies
-├── package.json           # Node dependencies
-├── vite.config.js         # Vite configuration with container networking
-└── resources/css/app.css  # Tailwind CSS v4 configuration (@theme)
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### "Class not found" errors
-```bash
-composer dump-autoload
-```
-
-#### Permission errors on storage/bootstrap/cache
-```bash
-chmod -R 775 storage bootstrap/cache
-```
-
-#### NPM build errors
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-#### Clear all caches
-```bash
-php artisan optimize:clear
-```
-
-#### Database connection errors
-- Check `.env` database credentials
-- Ensure database server is running
-- Verify database exists
-
-## 🔄 Update Log
-
-### [1.1.2] - 2026-09-02
-
-- **Dependency updates**: FullCalendar upgraded to v7 and ApexCharts / Swiper bumped to latest versions.
-- **RTL layout support**: Added right-to-left (RTL) direction support with automatic layout flipping and toggle.
-- **Language / RTL switcher**: Added switcher in user dropdown with persistent direction state in `localStorage`.
-- **Keyboard & dropdown improvements**: Enhanced dropdown behavior and click-outside handling.
-- **Tailwind CSS v4 optimizations**: Applied CSS logical properties across sidebar, tables, header, and components.
-
-
-### [2026-05-23]
-
-- Added **AI Settings** page to configure models, keys, and token limits.
-- Added **Maps** page with MapLibre GL, Leaflet, and iframe styles.
-- Added **Vector Maps** page powered by AmCharts 5 geodata (World & USA).
-- Added **Radar Charts** page with 3 unique formats.
-- Added **Radial Progress Charts** page featuring 4 custom layout templates.
-- Introduced new **Bar Charts Five & Six** and **Pie Charts Four & Five**.
-
-### [April 28, 2026]
-- Added **AI Dashboard** with token usage and revenue tracking.
-- Added **Sales Dashboard** with retention and multi-channel analytics.
-- Added **Finance Dashboard** with cashflow and balance management.
-- Introduced **6 New Layout variations** for improved UI flexibility.
-- Integrated **Advanced Data Visualization** with 7+ new chart types.
-
-### [2026-03-15]
-- Fixed PHP 8.5 deprecation warning
-
-### [2025-12-29]
-- Added Date Picker in Statistics Chart
-
-## License
-
-Refer to our [LICENSE](https://tailadmin.com/license) page for more information.
+El informe se puede regenerar en Windows con scripts/generar-informe.py y las dependencias de scripts/requirements-informe.txt.

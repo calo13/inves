@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ingresar · Proyecto IO · UMG</title><link rel="icon" type="image/png" href="{{ asset('images/umg/escudo-umg.png') }}">@vite(['resources/css/app.css','resources/js/app.js'])</head>
+<body class="bg-gray-50 font-outfit text-gray-700">
+ <main class="grid min-h-screen lg:grid-cols-2">
+  <section class="flex items-center justify-center px-7 py-12 sm:px-12"><div class="w-full max-w-md">
+   <div class="mb-10 flex items-center gap-5"><x-io.escudo class="h-22 w-22"/><div><p class="text-base font-semibold leading-6 text-brand-900">Universidad Mariano Gálvez<br>de Guatemala</p><p class="mt-2 text-xs text-gray-500">Proyecto académico · {{ config('academico.anio') }}</p></div></div>
+   <p class="mb-3 text-xs font-medium tracking-widest text-academic-red">INVESTIGACIÓN DE OPERACIONES</p><h1 class="text-3xl font-semibold text-gray-900">Acceso al proyecto</h1><p class="mt-3 text-sm leading-6 text-gray-500">Ingresa al sistema de optimización de tickets y acompañamiento docente.</p>
+   <form class="mt-8 space-y-5" method="post" action="{{ route('login') }}">@csrf<label class="block text-sm font-medium">Correo electrónico<input class="io-input mt-2" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="Correo de acceso"></label><label class="block text-sm font-medium">Contraseña<input class="io-input mt-2" type="password" name="password" required autocomplete="current-password" placeholder="Escribe tu contraseña"></label>@foreach($errors->all() as $error)<p role="alert" class="text-sm text-error-600">{{ $error }}</p>@endforeach<x-ui.button type="submit" className="w-full">Iniciar sesión</x-ui.button></form>
+   <div class="mt-9 border-t border-gray-200 pt-5"><p class="text-sm font-medium text-gray-700">{{ config('academico.estudiante') }}</p><p class="mt-1 text-xs text-gray-500">Estudiante de {{ config('academico.semestre') }} · {{ config('academico.tipo') }}</p></div>
+  </div></section>
+  <section class="relative hidden flex-col justify-between overflow-hidden bg-brand-950 p-12 text-white lg:flex xl:p-16">
+   <div class="absolute inset-x-0 top-0 h-2 bg-academic-red"></div>
+   <div class="flex items-center justify-between"><img src="{{ asset('images/umg/marca-umg-blanca.webp') }}" alt="UMG" class="h-12 w-auto object-contain"><span class="rounded-full border border-white/20 px-4 py-2 text-xs tracking-wide">{{ config('academico.tipo') }} · {{ config('academico.anio') }}</span></div>
+   <div class="py-12"><span class="mb-5 block text-xs tracking-widest text-brand-200">MODELO, SIMULACIÓN Y VALIDACIÓN</span><h2 class="max-w-lg text-4xl leading-tight font-semibold xl:text-5xl">Investigación de<br>Operaciones</h2><p class="mt-6 max-w-md text-lg leading-8 text-brand-100">Decisiones fundamentadas para equilibrar la carga y planificar el acompañamiento docente.</p><div class="mt-10 space-y-4 text-sm text-brand-100"><p class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-academic-gold"></span>Asignación equitativa por carga ponderada</p><p class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-academic-gold"></span>Calendario de supervisión sin colisiones</p><p class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-academic-gold"></span>Pruebas de capacidad y cambio dinámico</p></div></div>
+   <div class="border-t border-white/15 pt-6"><p class="text-sm font-medium">{{ config('academico.estudiante') }}</p><p class="mt-1 text-xs text-brand-200">{{ config('academico.semestre') }} · Entrega: {{ config('academico.entrega') }}</p></div>
+  </section>
+ </main>
+</body></html>

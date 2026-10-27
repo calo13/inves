@@ -1,7 +1,2 @@
 <?php
-
-test('the application returns a successful response', function () {
-    $response = $this->get('/');
-
-    $response->assertStatus(200);
-});
+it('redirige usuarios sin sesión',function(){$this->get('/')->assertRedirect('/ingresar');});
