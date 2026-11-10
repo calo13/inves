@@ -20,6 +20,7 @@ class AuthController extends Controller
             return back()->withErrors(['email' => 'Correo o contraseña incorrectos.'])->onlyInput('email');
         }RateLimiter::clear($key);
         $r->session()->regenerate();
+        $r->session()->put('recorrido_pendiente', true);
 
         return redirect()->intended('/');
     }

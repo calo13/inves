@@ -14,10 +14,12 @@ styles=getSampleStyleSheet()
 styles.add(ParagraphStyle(name='IOBody',fontName='Arial',fontSize=10,leading=15,spaceAfter=8,textColor=colors.HexColor('#344054')))
 styles.add(ParagraphStyle(name='IOTitle',fontName='ArialBold',fontSize=22,leading=28,spaceAfter=20,textColor=colors.HexColor('#18295b')))
 styles.add(ParagraphStyle(name='IOH2',fontName='ArialBold',fontSize=14,leading=19,spaceBefore=14,spaceAfter=9,textColor=colors.HexColor('#18295b'),keepWithNext=True))
+styles.add(ParagraphStyle(name='IOH3',fontName='ArialBold',fontSize=11,leading=15,spaceBefore=6,spaceAfter=5,textColor=colors.HexColor('#18295b'),keepWithNext=True))
 styles.add(ParagraphStyle(name='IOCell',fontName='Arial',fontSize=8,leading=11,spaceAfter=0))
 styles.add(ParagraphStyle(name='IOCode',fontName='Courier',fontSize=8,leading=11,spaceAfter=9))
 def fmt(s):
- s=escape(s);s=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',s);s=re.sub(r'`([^`]+)`',r'\1',s);return s
+ s=escape(s);s=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',s);s=re.sub(r'`([^`]+)`',r'\1',s)
+ return re.sub(r'\[([^\]]+)\]\((https?://[^<>"\s)]+)\)',r'<link href="\2" color="#176398"><u>\1</u></link>',s)
 story=[Image(str(root/'public/images/umg/escudo-umg.png'),width=82,height=82,hAlign='LEFT'),Spacer(1,16)]
 for index,file in enumerate(['INFORME_TECNICO.md','MODELO.md','MANUAL_USUARIO.md','BITACORA_IA.md']):
  if index:story.append(PageBreak())
@@ -35,14 +37,16 @@ for index,file in enumerate(['INFORME_TECNICO.md','MODELO.md','MANUAL_USUARIO.md
     cells=[c.strip() for c in lines[i].strip().strip('|').split('|')]
     if not all(re.fullmatch(r'[-: ]+',c) for c in cells):rows.append([Paragraph(fmt(c),styles['IOCell']) for c in cells])
     i+=1
+    if i+1<len(lines) and not lines[i].strip() and lines[i+1].strip().startswith('|'):i+=1
    if rows:
     n=len(rows[0]);width=475
     widths=[width/n]*n
-    if n==4:widths=[52,115,115,193]
+    if n==4:widths=[60,115,115,185]
     t=Table(rows,colWidths=widths,repeatRows=1,hAlign='LEFT');t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#ecf3ff')),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('LINEBELOW',(0,0),(-1,-1),.3,colors.HexColor('#e4e7ec'))]));story.extend([t,Spacer(1,10)])
    continue
   if line.startswith('# '):story.append(Paragraph(fmt(line[2:]),styles['IOTitle']))
   elif line.startswith('## '):story.append(Paragraph(fmt(line[3:]),styles['IOH2']))
+  elif line.startswith('### '):story.append(Paragraph(fmt(line[4:]),styles['IOH3']))
   else:story.append(Paragraph(fmt(line),styles['IOBody']))
   i+=1
 out=root/'docs'/'Informe_Tecnico_IO.pdf'

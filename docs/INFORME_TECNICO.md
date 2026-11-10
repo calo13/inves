@@ -4,6 +4,8 @@ Universidad Mariano Gálvez de Guatemala. Investigación de Operaciones, sexto s
 
 Autor: **Carlos Augusto Lopez Urizar**, estudiante de **6.º semestre**. Carné, sección y catedrático: pendientes de completar por el estudiante antes de la entrega.
 
+**Repositorio Git:** [https://github.com/calo13/inves](https://github.com/calo13/inves)
+
 ## 1. Análisis del proceso
 
 La Mesa de Entrada recibe solicitudes HelpDesk, registra prioridad, modalidad, dimensionamiento y fechas, y asigna un gestor. El reparto rotativo trata todos los tickets como unidades iguales. Eso oculta diferencias entre contratación externa, coordinación de cooperantes, gestión interna, grupos y sesiones. El sistema propuesto calcula unidades de carga y sugiere asignaciones según disponibilidad.
@@ -33,6 +35,8 @@ Laravel 12 y MySQL 8 constituyen la arquitectura de destino. Livewire 3 conecta 
 Las entidades principales son usuarios y roles, gestores, ausencias, tickets, grupos, sesiones, docentes, vínculos docente–grupo, parámetros, feriados, corridas, supervisiones e historiales. La aplicación de una propuesta se realiza en transacción, con índices únicos para impedir duplicación de supervisiones y choques diarios dentro de una corrida. Las vistas previas tienen una huella para rechazar propuestas desactualizadas.
 
 La aplicación incluye ingesta con previsualización, incidencias, Mesa de Entrada, sugerencia de gestor, gestión de recursos, simulador de docente, agenda, panel con filtros, tres pruebas y exportación Excel/PDF. Los roles limitan acciones y datos; un gestor consulta sus tickets y supervisiones, incluido apoyo.
+
+Al iniciar sesión, el recorrido guía al usuario por las funciones disponibles para su rol. Oscurece el resto de la pantalla, ilumina el control explicado y coloca la tarjeta de ayuda junto a él. Puede omitirse y repetirse desde **Recorrido** sin modificar los datos.
 
 ## 5. Validación
 

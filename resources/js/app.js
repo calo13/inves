@@ -1,4 +1,6 @@
 import './bootstrap';
+import { crearRecorrido } from './io-recorrido';
+window.ioRecorrido = crearRecorrido;
 // Livewire inicia Alpine; evitar una segunda instancia.
 window.ioChart=async(el,rows)=>{
  const {default:ApexCharts}=await import('apexcharts');

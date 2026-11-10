@@ -57,3 +57,27 @@ Al incluir el escudo en los PDF, una prueba detectó que faltaba GD en el PHP de
 El estudiante corrigió el dato de su semestre a sexto. Se actualizaron configuración, vistas, referencias documentales, prueba de acceso e informe PDF para mostrar 6.º semestre. La identificación previa de séptimo se originó en el mensaje anterior del estudiante; no se mantiene como dato vigente.
 
 Se prepara el código completo para el repositorio GitHub indicado por el estudiante, conservando la licencia y el historial de la plantilla. Las credenciales reales, las bases SQLite locales, respaldos y cachés se excluyen mediante .gitignore. La cuenta de demostración académica se conserva según la solicitud explícita del estudiante.
+
+## Resumen y manual de usuario — 28/10/2026
+
+Solicitud del estudiante: «haz un reseumn de como funicoa y un manual de usuario». Se contrastaron instrucciones y botones con las vistas y servicios existentes. Se amplió el manual a diez capítulos, se agregó un resumen independiente y se generó un PDF de doce páginas con identificación de sexto semestre. Se distinguen vista previa, aplicación permanente y pruebas transaccionales; se explica el alcance parcial y que las exportaciones usan el calendario de la última corrida aplicada.
+
+En la primera revisión visual del PDF apareció una etiqueta de salto de línea impresa en portada, porque el formateador escapaba el marcado. Se corrigió la composición de ese título y se volvió a generar y renderizar. Se revisaron todas las páginas y se confirmó el índice. Verificación de la aplicación: 18 pruebas PHP aprobadas, 78 aserciones, y compilación frontend correcta; Vite conserva su aviso de tamaño del paquete de gráficos. No se modificaron reglas ni datos de trabajo para elaborar los documentos.
+
+## Recorrido guiado al iniciar sesión — 03/11/2026
+
+Solicitud del estudiante: agregar un recorrido completo y explicativo que aparezca siempre al ingresar y se pueda omitir. Se incorporó una guía contextual de 16 pasos para administrador, con contenidos y rutas reducidos según los permisos de Mesa de Entrada y gestor. Cada autenticación correcta prepara un nuevo inicio; el avance se conserva por usuario en la pestaña durante la navegación. Omitir, finalizar o presionar Escape cierra la guía, y el botón Recorrido permite repetirla. No se guarda una exclusión permanente ni se ejecutan operaciones de modificación durante el recorrido.
+
+Se reutilizan controles, tipografía y colores de TailAdmin y Alpine proporcionado por Livewire. El diálogo permite navegación por teclado, mantiene el foco dentro del recorrido y bloquea las acciones del fondo mientras está abierto. Se comprobaron los 16 pasos en navegador, recarga, retroceso, omisión, finalización, repetición y reaparición tras cerrar e iniciar sesión.
+
+En la comprobación móvil se detectó que el gráfico del tablero retenía un ancho mínimo mayor que la pantalla y la cabecera tenía poco espacio para el nuevo botón. Se fijó una columna flexible para la cuadrícula del gráfico y se compactó la cabecera en pantallas pequeñas. La revisión posterior a 390 px confirmó un ancho de documento de 390 px y todos los controles del recorrido visibles, sin desbordamiento horizontal. No se alteraron los datos, restricciones ni resultados del modelo.
+
+Validación: 23 pruebas PHP, 116 aserciones y 5 pruebas JavaScript aprobadas; compilación Vite correcta. Permanece el aviso previo de tamaño del paquete de gráficos. La consola del navegador no registró errores durante la comprobación.
+
+## Recorrido con enfoque sobre los controles — 09/11/2026
+
+El estudiante solicitó que la guía oscureciera el fondo y centrara la atención en el control explicado. Se ampliaron los pasos de administrador de 16 a 18, se sustituyeron los encabezados genéricos por controles reales y se ubicó la tarjeta con un indicador junto al área iluminada. Los pasos de consulta y las alternativas cuando aún no existe una propuesta respetan los permisos y el estado de la pantalla. El recorrido no ejecuta operaciones sobre los datos.
+
+En la primera comprobación del diálogo de bienvenida, Alpine dejó vacío el atributo de posición y el estilo de las tarjetas contextuales lo trató como una posición válida. El diálogo perdió el centrado y su botón quedó fuera del área visible. Se restringió ese estilo a posiciones no vacías y se confirmó que bienvenida y cierre quedan centrados.
+
+El puerto 8000 correspondía a otra aplicación local. La comprobación se realizó en el puerto 8011 con una base SQLite aislada y el Excel de demostración, sin modificar la otra aplicación ni la base de trabajo. Los 18 pasos se verificaron en escritorio y móvil de 390 × 660 px, junto con el retroceso, la finalización, la omisión y la posibilidad de repetir. Pasaron 23 pruebas PHP y 7 pruebas JavaScript; la compilación frontend completó con el aviso previo de tamaño de ApexCharts.

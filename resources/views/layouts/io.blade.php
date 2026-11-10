@@ -6,7 +6,7 @@
  @vite(['resources/css/app.css','resources/js/app.js']) @livewireStyles
 </head>
 <body class="bg-gray-50 font-outfit text-gray-700" x-data="{ menu: false }">
-<div class="min-h-screen xl:flex">
+<div id="io-app-shell" class="min-h-screen xl:flex">
  <aside class="fixed inset-y-0 start-0 z-50 flex w-64 flex-col border-e border-gray-200 bg-white transition-transform xl:translate-x-0" :class="menu ? 'translate-x-0' : 'max-xl:-translate-x-full'">
   <a href="{{ route('dashboard') }}" class="flex items-center gap-3 border-b border-gray-100 px-5 py-6"><x-io.escudo class="h-14 w-14"/><span><span class="block text-xl font-semibold text-brand-900">UMG · IO</span><span class="mt-1 block text-xs leading-4 text-gray-500">Investigación de<br>Operaciones</span></span></a>
   <div class="px-6 pt-6 pb-3 text-xs font-medium tracking-widest text-gray-400">PROYECTO ACADÉMICO</div>
@@ -20,12 +20,14 @@
   <div class="mx-5 mt-auto mb-5 rounded-xl border border-gray-100 bg-gray-50 p-4 text-xs leading-5 text-gray-500"><p class="font-medium text-gray-800">{{ config('academico.estudiante') }}</p><p>{{ config('academico.semestre') }} · {{ config('academico.tipo') }}</p><p class="mt-2 border-t border-gray-200 pt-2">Entrega: {{ config('academico.entrega') }}</p></div>
  </aside>
  <div class="min-w-0 flex-1 xl:ms-64">
-  <header class="flex min-h-20 items-center justify-between gap-4 border-b border-gray-200 bg-white px-5 py-3 lg:px-9">
-   <div class="flex items-center gap-4"><button @click="menu=!menu" class="rounded-lg border border-gray-200 p-2 xl:hidden" aria-label="Abrir menú">☰</button><x-io.escudo class="h-10 w-10 xl:hidden"/><div><p class="text-sm font-medium text-gray-800">{{ config('academico.universidad') }}</p><p class="mt-1 text-xs text-gray-500">{{ config('academico.curso') }} <span class="mx-1 text-gray-300">/</span> {{ config('academico.semestre') }}</p></div></div>
-   <div class="flex shrink-0 items-center gap-3"><span class="hidden max-w-52 text-end text-sm sm:block">{{ auth()->user()->name }}<span class="mt-1 block text-xs text-gray-400">{{ auth()->user()->hasRole('admin')?'Administrador':auth()->user()->getRoleNames()->join(', ') }}</span></span><span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-brand-600">{{ mb_substr(auth()->user()->name,0,1) }}</span><form method="post" action="{{ route('logout') }}">@csrf<button class="text-xs text-gray-500 hover:text-brand-600">Salir</button></form></div>
+  <header class="flex min-h-20 flex-wrap items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 sm:px-5 lg:px-9">
+   <div class="flex items-center gap-4"><button @click="menu=!menu" class="rounded-lg border border-gray-200 p-2 xl:hidden" aria-label="Abrir menú">☰</button><x-io.escudo class="hidden h-10 w-10 sm:block xl:hidden"/><div><p class="text-sm font-medium text-gray-800"><span class="sm:hidden">UMG · IO</span><span class="hidden sm:inline">{{ config('academico.universidad') }}</span></p><p class="mt-1 text-xs text-gray-500"><span class="hidden sm:inline">{{ config('academico.curso') }} <span class="mx-1 text-gray-300">/</span> </span>{{ config('academico.semestre') }}</p></div></div>
+   <div class="flex shrink-0 items-center gap-3"><button type="button" data-tour-abrir @click="$dispatch('io-recorrido-abrir')" class="io-secondary gap-2" aria-label="Repetir recorrido guiado" title="Repetir recorrido guiado"><span aria-hidden="true" class="flex h-5 w-5 items-center justify-center rounded-full border border-current text-xs">?</span><span class="hidden sm:inline">Recorrido</span></button><span class="hidden max-w-52 text-end text-sm lg:block">{{ auth()->user()->name }}<span class="mt-1 block text-xs text-gray-400">{{ auth()->user()->hasRole('admin')?'Administrador':auth()->user()->getRoleNames()->join(', ') }}</span></span><span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-brand-600">{{ mb_substr(auth()->user()->name,0,1) }}</span><form method="post" action="{{ route('logout') }}">@csrf<button class="text-xs text-gray-500 hover:text-brand-600">Salir</button></form></div>
   </header>
   <main class="mx-auto max-w-screen-2xl p-5 lg:p-9">{{ $slot }}</main>
   <footer class="px-9 py-6 text-xs leading-5 text-gray-400">{{ config('academico.tipo') }} · {{ config('academico.curso') }} · {{ config('academico.anio') }}<br>{{ config('academico.estudiante') }} · {{ config('academico.semestre') }} · UMG</footer>
  </div>
-</div>@livewireScripts
+</div>
+<x-io.recorrido/>
+@livewireScripts
 </body></html>

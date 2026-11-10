@@ -4,6 +4,8 @@ Optimización de tickets y acompañamiento docente.
 
 Proyecto de Investigación de Operaciones, UMG, sexto semestre. Entrega confirmada: **30/10/2026**.
 
+Repositorio del proyecto: [github.com/calo13/inves](https://github.com/calo13/inves).
+
 Aplicación Laravel 12, PHP 8.2+, Livewire 3 y MySQL 8. Interfaz basada en la plantilla oficial **TailAdmin Free Laravel**, con Blade, Tailwind CSS v4, ApexCharts y FullCalendar. Se conserva la licencia MIT del repositorio original. No es una maqueta: las acciones utilizan servicios y base de datos.
 
 ## Abrir el proyecto académico de este equipo
@@ -35,6 +37,19 @@ php artisan serve --host=127.0.0.1 --port=8000
 
 En una copia ya configurada no regenerar la clave. `io:demo` carga el archivo incluido `database/fixtures/Control_Prueba_IO.xlsx`, sin borrar tablas. Alternativa: subir otro Control.xlsx desde Importar Excel. Para archivos grandes se recomienda `memory_limit=512M` en php.ini; el importador ya omite hojas de reportes y estilos innecesarios.
 
+## Actualizar una instalación en el servidor
+
+Desde la carpeta del proyecto, descarga la versión publicada y compila los archivos de la interfaz:
+
+```bash
+git pull --ff-only origin main
+npm ci
+npm run build
+php artisan view:clear
+```
+
+Para esta actualización del recorrido y la documentación se conservan el archivo `.env` y los datos ya importados.
+
 ## Motor Python y respaldo PHP
 
 ```powershell
@@ -63,6 +78,14 @@ IO_PYTHON="C:/ruta/al/proyecto/.venv/Scripts/python.exe"
 - **Pruebas de validación:** ejecutar tres escenarios con restauración transaccional y evidencia guardada.
 - **Configuración:** pesos, factores, plazos, capacidad, días no hábiles y cuentas con roles.
 
+## Recorrido guiado al ingresar
+
+Cada inicio de sesión correcto abre un recorrido por las pantallas autorizadas para ese usuario. El administrador dispone de 18 pasos; Mesa de Entrada y los gestores reciben una guía ajustada a sus permisos. El recorrido oscurece el resto de la pantalla, ilumina el control explicado y coloca junto a él la tarjeta de ayuda. Los botones **Comenzar**, **Siguiente** y **Anterior** permiten navegar entre explicaciones y módulos reales. El recorrido no importa, edita, optimiza ni aplica datos.
+
+**Omitir recorrido** o la tecla **Escape** permiten salir en cualquier paso. También se puede completar con **Finalizar recorrido** y repetir con **Recorrido**, en la barra superior. Omitirlo no lo desactiva para el siguiente inicio de sesión. El avance se conserva en la pestaña mientras se cambia de pantalla o se recarga; no se guarda una preferencia permanente de exclusión.
+
+Comprobación de navegación y omisión: `node --test tests/js/recorrido.test.mjs`.
+
 ## Datos incompletos: decisión explícita
 
 El archivo contiene 113 filas de tickets pero 112 códigos únicos. `6212-PFIN-26` aparece dos veces: se conserva el primer ticket y la segunda fila íntegra queda en incidencias, sin sobrescribir la primera. No se interpreta una fecha textual ambigua ni se inventan sesiones.
@@ -86,14 +109,17 @@ php artisan io:validar NUMERO_DE_CORRIDA
 ## Documentación
 
 - `docs/MODELO.md`: formulación, objetivo y supuestos.
-- `docs/MANUAL_USUARIO.md`: operación y guion de las pruebas.
+- [Resumen de funcionamiento](docs/RESUMEN_FUNCIONAMIENTO.md): propósito, flujo y reglas principales.
+- [Manual de usuario](docs/MANUAL_USUARIO.md): pasos por módulo, ejemplos y solución de problemas.
+- [Resumen y manual en PDF](output/pdf/Manual_Usuario_IO.pdf): versión imprimible con portada, índice y 10 capítulos.
 - `docs/BITACORA_IA.md`: decisiones, prompts, errores reales y correcciones.
 - `docs/INFORME_TECNICO.md`: base del informe académico.
+- [Informe técnico en PDF](docs/Informe_Tecnico_IO.pdf): versión de entrega con el enlace al repositorio.
 - `docs/VERIFICACION.md`: resultados de comprobación reales.
 
 Fuentes técnicas primarias: https://github.com/TailAdmin/tailadmin-laravel y https://livewire.laravel.com/docs/3.x/installation. El frontend utiliza las bibliotecas de la plantilla, cargadas localmente y compiladas con Vite. Para entrega sin Internet puede sustituirse la fuente web Outfit por una fuente local; el sistema ya usa sans-serif como respaldo.
 
-No usar `migrate:fresh` sobre una base con información que se quiera conservar. No hay publicación en Internet ni conexión al HelpDesk real. El video individual y los datos de autoría del informe los completa el estudiante.
+No usar `migrate:fresh` sobre una base con información que se quiera conservar. La aplicación funciona sin conexión al HelpDesk real. El video individual y los datos académicos pendientes los completa el estudiante.
 
 ## Archivos del repositorio
 
@@ -102,3 +128,5 @@ Se incluyen el código, las migraciones, los parámetros de ejemplo, los archivo
 La configuración de Apache de este equipo es local. Para otro equipo, copiar config/apache-docencia.conf.example como config/apache-docencia.conf y ajustar la ruta del proyecto antes de incluirlo en Apache.
 
 El informe se puede regenerar en Windows con scripts/generar-informe.py y las dependencias de scripts/requirements-informe.txt.
+
+El resumen y manual imprimibles se regeneran con `python scripts/generar-manual.py`, utilizando esas mismas dependencias y las fuentes Arial de Windows. El PDF se guarda en `output/pdf/Manual_Usuario_IO.pdf`.

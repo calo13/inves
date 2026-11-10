@@ -1326,3 +1326,32 @@ pre code,
  .io-event-sample { @apply border-success-300 bg-success-50 text-success-700; }
 }
 [x-cloak] { display:none!important; }
+
+/* Recorrido contextual: conserva colores y controles de TailAdmin. */
+@layer components {
+ .io-tour { @apply fixed inset-0 z-99999; }
+ .io-tour-foco { position: fixed; border: 2px solid var(--color-brand-300); border-radius: 10px; box-shadow: 0 0 0 9999px rgb(16 24 40 / 78%); pointer-events: none; }
+ .io-tour-dialogo {
+  @apply fixed z-10 flex flex-col rounded-2xl border border-gray-200 bg-white shadow-theme-xl outline-none;
+  top: 50%;
+  left: 50%;
+  width: min(27rem, calc(100vw - 2rem));
+  max-height: var(--io-tour-max, calc(100dvh - 2rem));
+  transform: translate(-50%, -50%);
+ }
+ .io-tour-dialogo[data-lado]:not([data-lado=""]) { transform: none; }
+ .io-tour-dialogo[data-lado]:not([data-lado=""])::before {
+  position: absolute;
+  z-index: -1;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border: 1px solid var(--color-gray-200);
+  background: white;
+  transform: rotate(45deg);
+ }
+ .io-tour-dialogo[data-lado="abajo"]::before { top: -7px; left: calc(var(--io-tour-ancla) - 6px); border-bottom: 0; border-right: 0; }
+ .io-tour-dialogo[data-lado="arriba"]::before { bottom: -7px; left: calc(var(--io-tour-ancla) - 6px); border-top: 0; border-left: 0; }
+ .io-tour-dialogo[data-lado="derecha"]::before { left: -7px; top: calc(var(--io-tour-ancla) - 6px); border-top: 0; border-right: 0; }
+ .io-tour-dialogo[data-lado="izquierda"]::before { right: -7px; top: calc(var(--io-tour-ancla) - 6px); border-bottom: 0; border-left: 0; }
+}
